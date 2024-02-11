@@ -1,3 +1,6 @@
+const axios = require('axios');
+const { log } = require('./logger');
+
 class Helper {
     static countryCodesMap = {};
 
@@ -40,6 +43,29 @@ class Helper {
         } else {
             // Return the input unchanged if it's not a valid string
             return str;
+        }
+    }
+
+    static containsLocationInfo = (str) => {
+        str = str.toLowerCase();
+
+        for (const countryCode in Helper.countryCodesMap) {
+            const countryName = Helper.countryCodesMap[countryCode].toLowerCase();
+            if (str.includes(countryName)) {
+                return true;
+            }
+        }
+    
+        return false;
+    }
+
+    static fetchData = async (url) => {
+        try {
+          const response = await axios.get(url);
+          return response.data;
+        } catch (error) {
+          log(`Error fetching data from ${url}: ${error.message}`);
+          return null;
         }
     }
 }

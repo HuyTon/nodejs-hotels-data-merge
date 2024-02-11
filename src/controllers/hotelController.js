@@ -1,6 +1,6 @@
 const HotelService = require('../services/hotelService');
 
-exports.getHotels = async (req, res, next) => {
+module.exports.getHotels = async (req, res, next) => {
     try {
         const hotels = await HotelService.getAllHotels();
         res.json(hotels);
@@ -9,7 +9,7 @@ exports.getHotels = async (req, res, next) => {
     }
 };
 
-exports.getHotelsByDestination = async (req, res, next) => {
+module.exports.getHotelsByDestination = async (req, res, next) => {
     const destination = req.params.destination;
     try {
         const hotels = await HotelService.getHotelsByDestination(destination);
