@@ -1,5 +1,31 @@
 {
     "port": 3000,
-    "dbConnectionString": "mongodb://localhost:27017/hotels_db"
+    "dbConnectionString": "mongodb://localhost:27017/hotels_db",
+    "specificDetailsFilter": [
+        "amenities",
+        "features",
+        "garden",
+        "sea view",
+        "sundeck",
+        "pool",
+        "hot tub",
+        "free parking",
+        "free wifi",
+        "free wi-fi",
+        "coffeemaking",
+        "teamaking"
+      ],
+    "locationInformationFilter" : [
+        "location",
+        "located",
+        "nearby",
+        "walk from",
+        "walk to",
+        "attractions",
+        "restaurant",
+        "bars",
+        "pubs",
+        "club"
+      ]
 }
   
