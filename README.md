@@ -1,6 +1,6 @@
 # nodejs-hotels-data-merge
 
-Develop a Node.js application that work as a web server. It should focused on data cleaning and selection, adhering to predefined rules aimed at ensuring optimal data quality and sanitation post-merger.
+A Node.js application that works as a web server will focus on data cleaning and selection, adhering to predefined rules aimed at ensuring optimal data quality and sanitation post-merger.
 
 ### Features
 
