@@ -1,0 +1,26 @@
+{
+    "name": "nodejs-hotels-data-merge",
+    "version": "1.0.0",
+    "description": "Primary focused on data cleaning and selection, adhering to predefined rules aimed at ensuring optimal data quality and sanitation post-merger.",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index",
+        "dev": "nodemon index",
+        "test": "mocha test/**/*.js test/**/**/*.js --reporter spec"
+    },
+    "keywords": [],
+    "author": "Huy Ton That",
+    "license": "GNU",
+    "dependencies": {
+        "config": "^3.3.11",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2"
+    },
+    "devDependencies": {
+        "axios": "^1.6.7",
+        "chai": "^4.2.0",
+        "mocha": "^10.3.0",
+        "nodemon": "^2.0.20",
+        "sinon": "^17.0.1"
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "port": 3000,
+    "dbConnectionString": "mongodb://localhost:27017/hotels_db",
+    "brandIdentityFilter": {
+      "luxury": ["luxury", "deluxe", "premium", "elegant", "exclusive"],
+      "budget": ["budget", "affordable", "economy", "basic", "value"],
+      "modern": ["modern", "contemporary", "trendy", "sleek", "stylish"],
+      "traditional": ["traditional", "classic", "historic", "nostalgic", "authentic"],
+      "ecoFriendly": ["eco-friendly", "green", "sustainable", "environmentally friendly"],
+      "familyFriendly": ["family-friendly", "kid-friendly", "child-friendly", "family-oriented"],
+      "boutique": ["boutique", "unique", "charming", "intimate", "distinctive"]
+    },
+    "specificDetailsFilter": [
+        "amenities",
+        "features",
+        "garden",
+        "sea view",
+        "sundeck",
+        "pool",
+        "hot tub",
+        "free parking",
+        "free wifi",
+        "free wi-fi",
+        "coffeemaking",
+        "teamaking"
+      ],
+    "locationInformationFilter" : [
+        "location",
+        "located",
+        "nearby",
+        "walk from",
+        "walk to",
+        "attractions",
+        "restaurant",
+        "bars",
+        "pubs",
+        "club"
+      ]
+}
+  
