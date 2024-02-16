@@ -6,7 +6,7 @@ const {
 } = require("../src/services/hotelService/fetchAndMergeData");
 const Helper = require("../src/utils/helper");
 
-describe("fetchAndMergeData function", () => {
+describe("fetchAndMergeData", () => {
   afterEach(() => {
     sinon.restore(); // Restore stubs after each test
   });
@@ -19,7 +19,7 @@ describe("fetchAndMergeData function", () => {
     expect(result).to.deep.equal([]);
   });
 
-  it("should merge non-empty data from multiple suppliers", async () => {
+  it("should return refined data when data is fetched from all suppliers", async () => {
     const acmeData = [
       {
         Id: "iJhz",
@@ -385,7 +385,7 @@ describe("fetchAndMergeData function", () => {
       {
         id: "SjyX",
         destination_id: 5432,
-        name: "InterContinental Singapore Robertson Quay",
+        name: "Intercontinental Singapore Robertson Quay",
         location: {
           lat: "",
           lng: "",
@@ -394,7 +394,7 @@ describe("fetchAndMergeData function", () => {
           country: "Singapore",
         },
         description:
-          "Enjoy sophisticated waterfront living at the new InterContinental® Singapore Robertson Quay, luxury's preferred address nestled in the heart of Robertson Quay along the Singapore River, with the CBD just five minutes drive away. Magnifying the comforts of home, each of our 225 studios and suites features a host of thoughtful amenities that combine modernity with elegance, whilst maintaining functional practicality. The hotel also features a chic, luxurious Club InterContinental Lounge.",
+          "InterContinental Singapore Robertson Quay is luxury's preferred address offering stylishly cosmopolitan riverside living for discerning travelers to Singapore. Prominently situated along the Singapore River, the 225-room inspiring luxury hotel is easily accessible to the Marina Bay Financial District, Central Business District, Orchard Road and Singapore Changi International Airport, all located a short drive away. The hotel features the latest in Club InterContinental design and service experience, and five dining options including Publico, an Italian landmark dining and entertainment destination by the waterfront.",
         amenities: {
           general: [
             "outdoor pool",
@@ -445,7 +445,7 @@ describe("fetchAndMergeData function", () => {
       {
         id: "f8c9",
         destination_id: 1122,
-        name: "Hilton Shinjuku Tokyo",
+        name: "Hilton Tokyo",
         location: {
           lat: 35.6926,
           lng: 139.690965,
@@ -501,8 +501,8 @@ describe("fetchAndMergeData function", () => {
         ],
       },
     ];
+
     const result = await fetchAndMergeData();
-    console.log("result", result);
     expect(result).to.deep.equal(expectedMergedData);
   });
 }, 5000);

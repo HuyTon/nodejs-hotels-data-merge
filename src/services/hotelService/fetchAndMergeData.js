@@ -38,7 +38,7 @@ const fetchAndMergeData = async () => {
     const groupedData = groupById(acmeMap, patagoniaMap, paperfliesMap);
 
     // Perform data cleaning and standardize names and formats of properties
-    const sanitizedData = await sanitizeData(groupedData);
+    const sanitizedData = sanitizeData(groupedData);
 
     // Apply criteria to select the best properties
     const refinedData = refineData(sanitizedData);

@@ -1,6 +1,6 @@
 const Helper = require("../../utils/helper");
 
-const sanitizeData = async (groupedData) => {
+const sanitizeData = (groupedData) => {
   const cleanedData = [];
 
   // Parse and clean each item in the grouped data array.
@@ -8,7 +8,7 @@ const sanitizeData = async (groupedData) => {
   // 1. Standardize Property Names
   // 2. Refrain from selecting "dirty" properties
   // 3. Normalize data formats
-  for (const item of groupedData) {
+  groupedData.forEach((item) => {
     const cleanedItem = {};
 
     // Loop through keys of the item to dynamically determine the supplier
@@ -63,7 +63,7 @@ const sanitizeData = async (groupedData) => {
         );
       }
       if (!cleanedItem.location.country) {
-        cleanedItem.location.country = await Helper.getCountryName(
+        cleanedItem.location.country = Helper.getCountryName(
           supplier.Country ||
             (supplier.location && supplier.location.country) ||
             ""
@@ -163,7 +163,7 @@ const sanitizeData = async (groupedData) => {
     }
 
     cleanedData.push(cleanedItem);
-  }
+  });
 
   return cleanedData;
 };

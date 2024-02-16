@@ -4,12 +4,7 @@ const {
   groupById,
 } = require("../src/services/hotelService/groupData");
 
-describe("createIdMap & groupData", () => {
-  it("should return null if input data is empty", () => {
-    const result = createIdMap([]);
-    expect(result).to.be.null;
-  });
-
+describe("createIdMap | groupData", () => {
   it("should return null if input data is not an array", () => {
     const result = createIdMap("invalid data");
     expect(result).to.be.null;

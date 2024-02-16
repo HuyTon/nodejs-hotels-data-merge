@@ -1,6 +1,4 @@
 const { expect } = require("chai");
-const sinon = require("sinon");
-const Helper = require("../src/utils/helper");
 const { sanitizeData } = require("../src/services/hotelService/sanitizeData");
 
 describe("sanitizeData", () => {
@@ -513,11 +511,11 @@ describe("sanitizeData", () => {
       },
     ];
 
-    const sanitizedData = await sanitizeData(groupedData);
+    const sanitizedData = sanitizeData(groupedData);
     expect(sanitizedData).to.deep.equal(expectedSanitizedData);
-  }, 20000);
+  });
 
-  it("should handle missing or empty properties gracefully", async () => {
+  it("should handle missing or empty properties", async () => {
     const groupedData = [
       {
         acme: {
@@ -779,7 +777,7 @@ describe("sanitizeData", () => {
       },
     ];
 
-    const sanitizedData = await sanitizeData(groupedData);
+    const sanitizedData = sanitizeData(groupedData);
     expect(sanitizedData).to.deep.equal(expectedSanitizedData);
-  }, 10000);
+  });
 });
