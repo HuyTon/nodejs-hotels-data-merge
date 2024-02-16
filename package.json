@@ -6,7 +6,7 @@
     "scripts": {
         "start": "node index",
         "dev": "nodemon index",
-        "test": "mocha --reporter spec"
+        "test": "mocha test/**/*.js test/**/**/*.js --reporter spec"
     },
     "keywords": [],
     "author": "Huy Ton That",

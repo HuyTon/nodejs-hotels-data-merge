@@ -1,5 +1,7 @@
 const { expect } = require("chai");
-const { sanitizeData } = require("../src/services/hotelService/sanitizeData");
+const {
+  sanitizeData,
+} = require("../../../src/services/hotelService/sanitizeData");
 
 describe("sanitizeData", () => {
   it("should sanitize data from multiple suppliers", async () => {

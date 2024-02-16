@@ -2,7 +2,7 @@ const { expect } = require("chai");
 const {
   createIdMap,
   groupById,
-} = require("../src/services/hotelService/groupData");
+} = require("../../../src/services/hotelService/groupData");
 
 describe("createIdMap | groupData", () => {
   it("should return null if input data is not an array", () => {

@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const { refineData } = require("../src/services/hotelService/refineData");
+const { refineData } = require("../../../src/services/hotelService/refineData");
 
 describe("refineData", () => {
   it("should refine data from multiple suppliers", async () => {

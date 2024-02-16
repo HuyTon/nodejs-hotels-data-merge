@@ -16,7 +16,8 @@ module.exports.getHotels = async (req, res, next) => {
 
     res.json(filteredHotels);
   } catch (error) {
-    next(error);
+    console.error("Error occurred while fetching hotels:", error);
+    res.status(500).json({ error: "An error occurred while fetching hotels" });
   }
 };
 

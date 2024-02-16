@@ -1,12 +1,12 @@
 const { expect } = require("chai");
 const sinon = require("sinon");
-const Helper = require("../src/utils/helper");
+const Helper = require("../../../src/utils/helper");
 const {
   selectBestHotelName,
   selectBestAddress,
   selectBestDescription,
   selectBestImageCategory,
-} = require("../src/services/hotelService/common/dataUtilities");
+} = require("../../../src/services/hotelService/common/dataUtilities");
 
 describe("selectBestHotelName", () => {
   it("should return the best hotel name", () => {
@@ -85,6 +85,22 @@ describe("selectBestDescription", () => {
 
 describe("selectBestImageCategory", () => {
   it("should return the best image category", () => {
-    // Your test cases here
+    // Sample input data
+    const category = [
+      { link: "image1", description: "Description for image1" },
+      { link: "image2", description: "Description for image2" },
+      { link: "image1", description: "Short description" },
+      { link: "image3", description: "Longer description for image3" },
+    ];
+
+    // Expected output based on the sample input data
+    const expectedBestCategory = [
+      { link: "image1", description: "Description for image1" },
+      { link: "image2", description: "Description for image2" },
+      { link: "image3", description: "Longer description for image3" },
+    ];
+
+    const result = selectBestImageCategory(category);
+    expect(result).to.deep.equal(expectedBestCategory);
   });
 });

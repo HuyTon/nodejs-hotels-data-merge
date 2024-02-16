@@ -3,8 +3,8 @@ const sinon = require("sinon");
 const { assert } = require("chai").assert;
 const {
   fetchAndMergeData,
-} = require("../src/services/hotelService/fetchAndMergeData");
-const Helper = require("../src/utils/helper");
+} = require("../../../src/services/hotelService/fetchAndMergeData");
+const Helper = require("../../../src/utils/helper");
 
 describe("fetchAndMergeData", () => {
   afterEach(() => {
