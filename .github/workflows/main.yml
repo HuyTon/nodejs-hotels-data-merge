@@ -41,7 +41,7 @@ jobs:
         run: npm test
 
       - name: Restart the app using PM2 process manager
-        run: pm2 restart hotels-data-merge
+        run: pm2 restart nodejs-hotels-data-merge
 
   # deploy:
   #   runs-on: ubuntu-latest
@@ -54,5 +54,5 @@ jobs:
   #     - uses: akhileshns/heroku-deploy@v3.12.12
   #       with:
   #         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-  #         heroku_app_name: "hotels-data-merge"
-  #         heroku_email: "huytonit@gmail.com"
+  #         heroku_app_name: "[app name]"
+  #         heroku_email: "[email]"
