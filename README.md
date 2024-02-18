@@ -79,13 +79,13 @@ Before starting the application, make sure to set up the necessary environment v
 
 #### Starting the Server
 
-To start the server, run the following command:
+- To start the server, run the following command:
 
-```
-npm start
-```
+  ```
+  npm start
+  ```
 
-The server will be accessible at http://localhost:3000.
+- The server will be accessible at http://localhost:3000.
 
 #### Running Tests
 
@@ -97,173 +97,173 @@ npm test
 
 #### Invoke API
 
-Example of querying all merged hotels information:
+- Example of querying all merged hotels information:
 
-```
-localhost:3000/api/hotels
-```
+  ```
+  localhost:3000/api/hotels
+  ```
 
-Example of querying merged hotels filter by a destination ID:
+- Example of querying merged hotels filter by a destination ID:
 
-```
-localhost:3000/api/hotels?destination=5432
-```
+  ```
+  localhost:3000/api/hotels?destination=5432
+  ```
 
-Example of querying merged hotels filter by a list of hotel IDs:
+- Example of querying merged hotels filter by a list of hotel IDs:
 
-```
-localhost:3000/api/hotels?hotels=iJhz,SjyX
-```
+  ```
+  localhost:3000/api/hotels?hotels=iJhz,SjyX
+  ```
 
-Example of querying merged hotels filter by a destination ID and list of hotel IDs:
+- Example of querying merged hotels filter by a destination ID and list of hotel IDs:
 
-```
-localhost:3000/api/hotels?hotels=iJhz,SjyX&destination=5432
-```
+  ```
+  localhost:3000/api/hotels?hotels=iJhz,SjyX&destination=5432
+  ```
 
 ### CI/CD pipelines with GitHub Actions
 
-This repository supports Continuous Integration and Continuous Deployment (CI/CD) workflows using GitHub Actions along with self-hosted deployment leveraging PM2.
+- This repository supports Continuous Integration and Continuous Deployment (CI/CD) workflows using GitHub Actions along with self-hosted deployment leveraging PM2.
 
-Self-Hosted Deployment with PM2: Take control of your deployment environment by leveraging PM2 for self-hosted deployment, providing flexibility and scalability.
+- Self-Hosted Deployment with PM2: Take control of your deployment environment by leveraging PM2 for self-hosted deployment, providing flexibility and scalability.
 
 ### A. Self-Hosted
 
-#### PM2 Process Manager
+#### 1. PM2 Process Manager
 
 PM2 (Process Manager 2) is a popular process manager for Node.js applications. It provides a set of features to manage, monitor, and keep Node.js applications running smoothly in production environments.
 
-##### Install PM2:
+- ##### Install PM2:
 
-```
-npm install -g pm2
-```
+  ```
+  npm install -g pm2
+  ```
 
-##### To start application:
+- ##### To start application:
 
-```
-pm2 start --name=nodejs-hotels-data-merge index.js
-```
+  ```
+  pm2 start --name=nodejs-hotels-data-merge index.js
+  ```
 
-![alt text](<[PM2] Done.png>)
+  ![alt text](<[PM2] Done.png>)
 
-##### To terminate application:
+- ##### To terminate application:
 
-```
-pm2 list
+  ```
+  pm2 list
 
-pm2 delete [app name | id]
-```
+  pm2 delete [app name | id]
+  ```
 
-#### Add a new self-hosted runner
+#### 2. Add a new self-hosted runner
 
 Adding a self-hosted runner requires that you download, configure, and execute the GitHub Actions Runner:
 
-##### Download
+- ##### 2.1. Download
 
-###### macOS x64
+  - ###### macOS x64
 
-```
-# Create a folder
-mkdir actions-runner && cd actions-runner
-# Download the latest runner package
-$ curl -o actions-runner-osx-x64-2.313.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-osx-x64-2.313.0.tar.gz
-# Optional: Validate the hash
-$ echo "65dd2618b5afa5ae1394388b215da0b763d791b480ae09f0ead956e8f8864c83  actions-runner-osx-x64-2.313.0.tar.gz" | shasum -a 256 -c
-# Extract the installer
-$ tar xzf ./actions-runner-osx-x64-2.313.0.tar.gz
-```
+    ```
+    # Create a folder
+    mkdir actions-runner && cd actions-runner
+    # Download the latest runner package
+    $ curl -o actions-runner-osx-x64-2.313.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-osx-x64-2.313.0.tar.gz
+    # Optional: Validate the hash
+    $ echo "65dd2618b5afa5ae1394388b215da0b763d791b480ae09f0ead956e8f8864c83  actions-runner-osx-x64-2.313.0.tar.gz" | shasum -a 256 -c
+    # Extract the installer
+    $ tar xzf ./actions-runner-osx-x64-2.313.0.tar.gz
+    ```
 
-###### macOS ARM64
+  - ###### macOS ARM64
 
-```
-# Create a folder
-$ mkdir actions-runner && cd actions-runner
-# Download the latest runner package
-$ curl -o actions-runner-osx-arm64-2.313.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-osx-arm64-2.313.0.tar.gz
-# Optional: Validate the hash
-$ echo "97258c75cf500f701f8549289c85d885a9497f7886c102bf4857eed8764a9143  actions-runner-osx-arm64-2.313.0.tar.gz" | shasum -a 256 -c
-# Extract the installer
-$ tar xzf ./actions-runner-osx-arm64-2.313.0.tar.gz
-```
+    ```
+    # Create a folder
+    $ mkdir actions-runner && cd actions-runner
+    # Download the latest runner package
+    $ curl -o actions-runner-osx-arm64-2.313.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-osx-arm64-2.313.0.tar.gz
+    # Optional: Validate the hash
+    $ echo "97258c75cf500f701f8549289c85d885a9497f7886c102bf4857eed8764a9143  actions-runner-osx-arm64-2.313.0.tar.gz" | shasum -a 256 -c
+    # Extract the installer
+    $ tar xzf ./actions-runner-osx-arm64-2.313.0.tar.gz
+    ```
 
-###### Linux x64
+  - ###### Linux x64
 
-```
-# Create a folder
-$ mkdir actions-runner && cd actions-runner
-# Download the latest runner package
-$ curl -o actions-runner-linux-x64-2.313.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-linux-x64-2.313.0.tar.gz
-# Optional: Validate the hash
-$ echo "56910d6628b41f99d9a1c5fe9df54981ad5d8c9e42fc14899dcc177e222e71c4  actions-runner-linux-x64-2.313.0.tar.gz" | shasum -a 256 -c
-# Extract the installer
-$ tar xzf ./actions-runner-linux-x64-2.313.0.tar.gz
-```
+    ```
+    # Create a folder
+    $ mkdir actions-runner && cd actions-runner
+    # Download the latest runner package
+    $ curl -o actions-runner-linux-x64-2.313.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-linux-x64-2.313.0.tar.gz
+    # Optional: Validate the hash
+    $ echo "56910d6628b41f99d9a1c5fe9df54981ad5d8c9e42fc14899dcc177e222e71c4  actions-runner-linux-x64-2.313.0.tar.gz" | shasum -a 256 -c
+    # Extract the installer
+    $ tar xzf ./actions-runner-linux-x64-2.313.0.tar.gz
+    ```
 
-###### Linux ARM64
+  - ###### Linux ARM64
 
-```
-# Create a folder
-$ mkdir actions-runner && cd actions-runner
-# Download the latest runner package
-$ curl -o actions-runner-linux-arm64-2.313.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-linux-arm64-2.313.0.tar.gz
-# Optional: Validate the hash
-$ echo "44c306066a32c8df8b30b1258b19ed3437285baa4a1d6289f22cf38eca474603  actions-runner-linux-arm64-2.313.0.tar.gz" | shasum -a 256 -c
-# Extract the installer
-$ tar xzf ./actions-runner-linux-arm64-2.313.0.tar.gz
-```
+    ```
+    # Create a folder
+    $ mkdir actions-runner && cd actions-runner
+    # Download the latest runner package
+    $ curl -o actions-runner-linux-arm64-2.313.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-linux-arm64-2.313.0.tar.gz
+    # Optional: Validate the hash
+    $ echo "44c306066a32c8df8b30b1258b19ed3437285baa4a1d6289f22cf38eca474603  actions-runner-linux-arm64-2.313.0.tar.gz" | shasum -a 256 -c
+    # Extract the installer
+    $ tar xzf ./actions-runner-linux-arm64-2.313.0.tar.gz
+    ```
 
-###### Windows x64
+  - ###### Windows x64
 
-```
-# Create a folder under the drive root
-$ mkdir actions-runner; cd actions-runner
-# Download the latest runner package
-$ Invoke-WebRequest -Uri https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-win-x64-2.313.0.zip -OutFile actions-runner-win-x64-2.313.0.zip
-# Optional: Validate the hash
-$ if((Get-FileHash -Path actions-runner-win-x64-2.313.0.zip -Algorithm SHA256).Hash.ToUpper() -ne 'c4cb3e5d9f0ab42ddc224cfdf9fb705397a7b20fd321536da5500259225fdf8a'.ToUpper()){ throw 'Computed checksum did not match' }
-# Extract the installer
-$ Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression.ZipFile]::ExtractToDirectory("$PWD/actions-runner-win-x64-2.313.0.zip", "$PWD")
-```
+    ```
+    # Create a folder under the drive root
+    $ mkdir actions-runner; cd actions-runner
+    # Download the latest runner package
+    $ Invoke-WebRequest -Uri https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-win-x64-2.313.0.zip -OutFile actions-runner-win-x64-2.313.0.zip
+    # Optional: Validate the hash
+    $ if((Get-FileHash -Path actions-runner-win-x64-2.313.0.zip -Algorithm SHA256).Hash.ToUpper() -ne 'c4cb3e5d9f0ab42ddc224cfdf9fb705397a7b20fd321536da5500259225fdf8a'.ToUpper()){ throw 'Computed checksum did not match' }
+    # Extract the installer
+    $ Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression.ZipFile]::ExtractToDirectory("$PWD/actions-runner-win-x64-2.313.0.zip", "$PWD")
+    ```
 
-###### Windows ARM64
+  - ###### Windows ARM64
 
-```
-# Create a folder under the drive root
-$ mkdir actions-runner; cd actions-runner
-# Download the latest runner package
-$ Invoke-WebRequest -Uri https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-win-arm64-2.313.0.zip -OutFile actions-runner-win-arm64-2.313.0.zip
-# Optional: Validate the hash
-$ if((Get-FileHash -Path actions-runner-win-arm64-2.313.0.zip -Algorithm SHA256).Hash.ToUpper() -ne '907796520d58527d0c0d0f7d85c1dd3a55146740aa21695cfa2e484223a6ed67'.ToUpper()){ throw 'Computed checksum did not match' }
-# Extract the installer
-$ Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression.ZipFile]::ExtractToDirectory("$PWD/actions-runner-win-arm64-2.313.0.zip", "$PWD")
-```
+    ```
+    # Create a folder under the drive root
+    $ mkdir actions-runner; cd actions-runner
+    # Download the latest runner package
+    $ Invoke-WebRequest -Uri https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-win-arm64-2.313.0.zip -OutFile actions-runner-win-arm64-2.313.0.zip
+    # Optional: Validate the hash
+    $ if((Get-FileHash -Path actions-runner-win-arm64-2.313.0.zip -Algorithm SHA256).Hash.ToUpper() -ne '907796520d58527d0c0d0f7d85c1dd3a55146740aa21695cfa2e484223a6ed67'.ToUpper()){ throw 'Computed checksum did not match' }
+    # Extract the installer
+    $ Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression.ZipFile]::ExtractToDirectory("$PWD/actions-runner-win-arm64-2.313.0.zip", "$PWD")
+    ```
 
-##### Configure
+- ##### 2.2. Configure
 
-###### macOS, Linux
+  - ###### macOS, Linux
 
-```
-# Create the runner and start the configuration experience
-$ ./config.sh --url https://github.com/HuyTon/nodejs-hotels-data-merge --token AHDS2KUJBDWG2IL2H53JHYTF2CMYW
-# Last step, run it!
-$ ./run.sh
-```
+    ```
+    # Create the runner and start the configuration experience
+    $ ./config.sh --url https://github.com/HuyTon/nodejs-hotels-data-merge --token AHDS2KUJBDWG2IL2H53JHYTF2CMYW
+    # Last step, run it!
+    $ ./run.sh
+    ```
 
-###### Windows
+  - ###### Windows
 
-```
-# Create the runner and start the configuration experience
-$ ./config.cmd --url https://github.com/HuyTon/nodejs-hotels-data-merge --token AHDS2KUJBDWG2IL2H53JHYTF2CMYW
-# Run it!
-$ ./run.cmd
-```
+    ```
+    # Create the runner and start the configuration experience
+    $ ./config.cmd --url https://github.com/HuyTon/nodejs-hotels-data-merge --token AHDS2KUJBDWG2IL2H53JHYTF2CMYW
+    # Run it!
+    $ ./run.cmd
+    ```
 
-##### Start Actions Runner
+- ##### 2.3. Start Actions Runner
 
-```
-actions-runner $ ./run.sh
-```
+  ```
+  actions-runner $ ./run.sh
+  ```
 
 ### B. Deploy to Heroku
 
