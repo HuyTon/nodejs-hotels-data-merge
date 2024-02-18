@@ -94,3 +94,179 @@ To run the tests, use the following command:
 ```
 npm test
 ```
+
+### CI/CD pipelines with GitHub Actions
+
+This repository supports Continuous Integration and Continuous Deployment (CI/CD) workflows using GitHub Actions along with self-hosted deployment leveraging PM2.
+
+Self-Hosted Deployment with PM2: Take control of your deployment environment by leveraging PM2 for self-hosted deployment, providing flexibility and scalability.
+
+### A. Self-Hosted
+
+#### PM2 Process Manager
+
+PM2 (Process Manager 2) is a popular process manager for Node.js applications. It provides a set of features to manage, monitor, and keep Node.js applications running smoothly in production environments.
+
+##### Install PM2:
+
+```
+npm install -g pm2
+```
+
+##### To start application:
+
+```
+pm2 start --name=nodejs-hotels-data-merge index.js
+```
+
+![alt text](<[PM2] Done.png>)
+
+##### To terminate application:
+
+```
+pm2 list
+
+pm2 delete [app name | id]
+```
+
+#### Add a new self-hosted runner
+
+Adding a self-hosted runner requires that you download, configure, and execute the GitHub Actions Runner:
+
+##### Download
+
+###### macOS x64
+
+```
+# Create a folder
+mkdir actions-runner && cd actions-runner
+# Download the latest runner package
+$ curl -o actions-runner-osx-x64-2.313.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-osx-x64-2.313.0.tar.gz
+# Optional: Validate the hash
+$ echo "65dd2618b5afa5ae1394388b215da0b763d791b480ae09f0ead956e8f8864c83  actions-runner-osx-x64-2.313.0.tar.gz" | shasum -a 256 -c
+# Extract the installer
+$ tar xzf ./actions-runner-osx-x64-2.313.0.tar.gz
+```
+
+###### macOS ARM64
+
+```
+# Create a folder
+$ mkdir actions-runner && cd actions-runner
+# Download the latest runner package
+$ curl -o actions-runner-osx-arm64-2.313.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-osx-arm64-2.313.0.tar.gz
+# Optional: Validate the hash
+$ echo "97258c75cf500f701f8549289c85d885a9497f7886c102bf4857eed8764a9143  actions-runner-osx-arm64-2.313.0.tar.gz" | shasum -a 256 -c
+# Extract the installer
+$ tar xzf ./actions-runner-osx-arm64-2.313.0.tar.gz
+```
+
+###### Linux x64
+
+```
+# Create a folder
+$ mkdir actions-runner && cd actions-runner
+# Download the latest runner package
+$ curl -o actions-runner-linux-x64-2.313.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-linux-x64-2.313.0.tar.gz
+# Optional: Validate the hash
+$ echo "56910d6628b41f99d9a1c5fe9df54981ad5d8c9e42fc14899dcc177e222e71c4  actions-runner-linux-x64-2.313.0.tar.gz" | shasum -a 256 -c
+# Extract the installer
+$ tar xzf ./actions-runner-linux-x64-2.313.0.tar.gz
+```
+
+###### Linux ARM64
+
+```
+# Create a folder
+$ mkdir actions-runner && cd actions-runner
+# Download the latest runner package
+$ curl -o actions-runner-linux-arm64-2.313.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-linux-arm64-2.313.0.tar.gz
+# Optional: Validate the hash
+$ echo "44c306066a32c8df8b30b1258b19ed3437285baa4a1d6289f22cf38eca474603  actions-runner-linux-arm64-2.313.0.tar.gz" | shasum -a 256 -c
+# Extract the installer
+$ tar xzf ./actions-runner-linux-arm64-2.313.0.tar.gz
+```
+
+###### Windows x64
+
+```
+# Create a folder under the drive root
+$ mkdir actions-runner; cd actions-runner
+# Download the latest runner package
+$ Invoke-WebRequest -Uri https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-win-x64-2.313.0.zip -OutFile actions-runner-win-x64-2.313.0.zip
+# Optional: Validate the hash
+$ if((Get-FileHash -Path actions-runner-win-x64-2.313.0.zip -Algorithm SHA256).Hash.ToUpper() -ne 'c4cb3e5d9f0ab42ddc224cfdf9fb705397a7b20fd321536da5500259225fdf8a'.ToUpper()){ throw 'Computed checksum did not match' }
+# Extract the installer
+$ Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression.ZipFile]::ExtractToDirectory("$PWD/actions-runner-win-x64-2.313.0.zip", "$PWD")
+```
+
+###### Windows ARM64
+
+```
+# Create a folder under the drive root
+$ mkdir actions-runner; cd actions-runner
+# Download the latest runner package
+$ Invoke-WebRequest -Uri https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-win-arm64-2.313.0.zip -OutFile actions-runner-win-arm64-2.313.0.zip
+# Optional: Validate the hash
+$ if((Get-FileHash -Path actions-runner-win-arm64-2.313.0.zip -Algorithm SHA256).Hash.ToUpper() -ne '907796520d58527d0c0d0f7d85c1dd3a55146740aa21695cfa2e484223a6ed67'.ToUpper()){ throw 'Computed checksum did not match' }
+# Extract the installer
+$ Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression.ZipFile]::ExtractToDirectory("$PWD/actions-runner-win-arm64-2.313.0.zip", "$PWD")
+```
+
+##### Configure
+
+###### macOS, Linux
+
+```
+# Create the runner and start the configuration experience
+$ ./config.sh --url https://github.com/HuyTon/nodejs-hotels-data-merge --token AHDS2KUJBDWG2IL2H53JHYTF2CMYW
+# Last step, run it!
+$ ./run.sh
+```
+
+###### Windows
+
+```
+# Create the runner and start the configuration experience
+$ ./config.cmd --url https://github.com/HuyTon/nodejs-hotels-data-merge --token AHDS2KUJBDWG2IL2H53JHYTF2CMYW
+# Run it!
+$ ./run.cmd
+```
+
+##### Start Actions Runner
+
+```
+actions-runner $ ./run.sh
+```
+
+### B. Deploy to Heroku
+
+Before deploying to Heroku, you need to ensure that you have your own Heroku account at https://signup.heroku.com/
+And make some changes at file .github/workflows/main.yml:
+
+```
+# Change runs-on of job build to 'ubuntu-latest' instead 'self-hosted'
+runs-on: ubuntu-latest
+
+# Add the deployment segment and replace the Heroku information with your Heroku credentials
+deploy:
+    runs-on: ubuntu-latest
+    needs: [build]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "[app name]"
+          heroku_email: "[email]"
+```
+
+#### Trigger the CI/CD pipeline and deployment process
+
+1. Clone this repository to your local machine.
+2. Follow the setup instructions provided in the README to configure the CI/CD workflow and self-hosted deployment with PM2.
+3. Make changes to your code and push them to trigger the CI/CD pipelines and deployment process.
+4. Sit back and watch as GitHub Actions and PM2 handle the rest, automating your development workflow seamlessly.
