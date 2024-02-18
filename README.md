@@ -95,6 +95,32 @@ To run the tests, use the following command:
 npm test
 ```
 
+#### Invoke API
+
+Example of querying all merged hotels information:
+
+```
+localhost:3000/api/hotels
+```
+
+Example of querying merged hotels filter by a destination ID:
+
+```
+localhost:3000/api/hotels?destination=5432
+```
+
+Example of querying merged hotels filter by a list of hotel IDs:
+
+```
+localhost:3000/api/hotels?hotels=iJhz,SjyX
+```
+
+Example of querying merged hotels filter by a destination ID and list of hotel IDs:
+
+```
+localhost:3000/api/hotels?hotels=iJhz,SjyX&destination=5432
+```
+
 ### CI/CD pipelines with GitHub Actions
 
 This repository supports Continuous Integration and Continuous Deployment (CI/CD) workflows using GitHub Actions along with self-hosted deployment leveraging PM2.
