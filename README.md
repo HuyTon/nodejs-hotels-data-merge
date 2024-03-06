@@ -296,3 +296,65 @@ deploy:
 2. Follow the setup instructions provided in the README to configure the CI/CD workflow and self-hosted deployment with PM2.
 3. Make changes to your code and push them to trigger the CI/CD pipelines and deployment process.
 4. Sit back and watch as GitHub Actions and PM2 handle the rest, automating your development workflow seamlessly.
+
+### Advanced Features
+
+This project utilizes Redis caching with a Least Recently Used (LRU) model. Redis serves as a high-performance, in-memory data store, optimizing data retrieval and storage by prioritizing frequently accessed data while gracefully managing memory usage. Leveraging the LRU model, Redis efficiently maintains data integrity by evicting the least recently accessed items when memory limits are reached, ensuring optimal performance and resource utilization.
+
+#### Installation
+
+```
+brew install redis
+```
+
+#### Check Redis Installation:
+
+```
+redis-server --version
+```
+
+#### Start Redis server
+
+```
+redis-server
+```
+
+#### Stop Redis server
+
+- ##### Connect to the running Redis server
+
+  ```
+  redis-cli
+  ```
+
+- ##### Once connected, issue the SHUTDOWN command to stop the Redis server
+
+  ```
+  SHUTDOWN
+  ```
+
+#### Retrieve Redis data
+
+- ##### Connect to the running Redis server:
+
+  ```
+  redis-cli
+  ```
+
+- ##### Retrieve all current keys
+
+  ```
+  KEYS *
+  ```
+
+- ##### View cached data by key
+
+  ```
+  GET <key>
+  ```
+
+#### Exit the Redis Server client
+
+```
+exit
+```

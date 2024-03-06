@@ -4,10 +4,14 @@ const dotenv = require("dotenv").config();
 const config = require("config");
 const hotelRoutes = require("./src/routes/hotelRoutes");
 const errorHandler = require("./src/utils/errorHandler");
+const redisCacheUtils = require("./src/utils/redisCacheUtils");
 
 const app = express();
 
 const PORT = process.env.PORT || config.get("port");
+
+// Initialize and connect to Redis
+redisCacheUtils.initializeRedisClient();
 
 // Enable body parser
 app.use(express.json());
