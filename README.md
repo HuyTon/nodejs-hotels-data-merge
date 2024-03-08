@@ -358,3 +358,65 @@ redis-server
 ```
 exit
 ```
+
+#### Benchmarking the application with Artillery
+
+We will utilize the Artillery (https://github.com/artilleryio/artillery) package to measure our application's performance in its current state so that we can easily quantify the differences after adding caching through Redis.
+
+- ##### Installation
+
+  ```
+  brew install redis
+  ```
+
+- ##### Check the installation
+
+  ```
+  artillery --version
+  ```
+
+- ##### Execute benchmark
+
+  ```
+  npm run benchmark
+  ```
+
+- ##### Analyze the benchmark result
+
+  All VUs finished. Total time: 1 minute, 2 seconds
+
+  ***
+
+  ## Summary report @ 14:47:54(+0800)
+
+  http.codes.200: ................................................................ 600
+  http.downloaded_bytes: ......................................................... 4944000
+  http.request_rate: ............................................................. 10/sec
+  http.requests: ................................................................. 600
+  http.response_time:
+  min: ......................................................................... 1
+  max: ......................................................................... 79
+  mean: ........................................................................ 2.8
+  median: ...................................................................... 2
+  p95: ......................................................................... 4
+  p99: ......................................................................... 15
+  http.responses: ................................................................ 600
+  vusers.completed: .............................................................. 600
+  vusers.created: ................................................................ 600
+  vusers.created_by_name.Query all hotels: ....................................... 600
+  vusers.failed: ................................................................. 0
+  vusers.session_length:
+  min: ......................................................................... 4
+  max: ......................................................................... 128
+  mean: ........................................................................ 6.9
+  median: ...................................................................... 5
+  p95: ......................................................................... 11.6
+  p99: ......................................................................... 71.5
+
+  The exact numbers will likely differ in your test run, but the following is the explanation of the report above:
+
+  - 10 requests were made to the server every second, and 600 requests in total.
+  - All 600 requests were successful (200 OK).
+  - The minimum and maximum response times was 1ms and 79ms respectively.
+  - The average response time was 2ms.
+  - The 95th and 99th percentile numbers are 4ms and 15ms respectively. This means, 95% of the time, the request was fulfilled below 4ms and 99% of the time, it was below 15ms.

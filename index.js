@@ -36,6 +36,7 @@ redisCacheUtils.initializeRedisClient();
 // });
 
 // Use logging middleware
+
 app.use(loggingMiddleware);
 
 // Enable body parser
@@ -46,7 +47,11 @@ app.use(express.urlencoded({ extended: false }));
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/api", validateApiKey, hotelRoutes);
+// 1. Access to the hotel's APIs without requires a valid API key
+app.use("/api", hotelRoutes);
+
+// 2. Access to the hotel's APIs requires a valid API key
+// app.use("/api", validateApiKey, hotelRoutes);
 
 app.use(errorHandler);
 

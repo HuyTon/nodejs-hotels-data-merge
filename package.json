@@ -6,7 +6,8 @@
     "scripts": {
         "start": "node index",
         "dev": "nodemon index",
-        "test": "mocha test/**/*.js test/**/**/*.js --reporter spec"
+        "test": "mocha test/**/*.js test/**/**/*.js --reporter spec",
+        "benchmark": "artillery run artillery.yml"
     },
     "keywords": [],
     "author": "Huy Ton That",
