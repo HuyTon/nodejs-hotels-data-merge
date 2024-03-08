@@ -2,7 +2,19 @@ const HotelService = require("../services/hotelService");
 
 module.exports.getHotels = async (req, res, next) => {
   try {
-    const { destination, hotels } = req.query;
+    let { destination, hotels, page = 1, limit = 10 } = req.query;
+
+    // Validate page and limit parameters
+    page = parseInt(page);
+    limit = parseInt(limit);
+
+    if (isNaN(page) || page < 1) {
+      return res.status(400).json({ error: "Invalid page number" });
+    }
+
+    if (isNaN(limit) || limit < 0) {
+      return res.status(400).json({ error: "Invalid limit value" });
+    }
 
     const hotelsData = await HotelService.getAllHotels();
 
@@ -18,7 +30,12 @@ module.exports.getHotels = async (req, res, next) => {
       ? filterHotelsByDestination(filteredHotels, destination)
       : filteredHotels;
 
-    res.json(filteredHotels);
+    const startIndex = (page - 1) * limit;
+    const endIndex = limit > 0 ? page * limit : hotelsData.length;
+
+    const hotelsSubset = filteredHotels.slice(startIndex, endIndex);
+
+    res.json(hotelsSubset);
   } catch (error) {
     fetchDataFailed(res, error);
   }
