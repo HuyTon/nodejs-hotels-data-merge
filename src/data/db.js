@@ -57,4 +57,22 @@ pool.on("enqueue", () => {
   logger.info("Callback queued for connection");
 });
 
+// Create a connection to the MySQL database
+// const connection = mysql.createConnection({
+//   host: process.env.DB_HOST,
+//   port: process.env.DB_PORT,
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_NAME,
+// });
+
+// Connect to the database
+// connection.connect((err) => {
+//   if (err) {
+//     logger.error(`Error connecting to MySQL database: ${err.message}`);
+//     return;
+//   }
+//   logger.info("Connected to the MySQL server.");
+// });
+
 module.exports = pool;

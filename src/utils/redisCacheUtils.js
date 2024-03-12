@@ -1,5 +1,6 @@
 const redis = require("redis");
 const hash = require("object-hash");
+const logger = require("./loggingUtils");
 
 const redisCacheUtils = ((
   defaultOptions = {
@@ -20,16 +21,16 @@ const redisCacheUtils = ((
 
       // Register events on the redis client
       redisClient.on("error", (error) =>
-        console.error(`Failed to create the Redis client with error: ${error}`)
+        logger.error(`Failed to create the Redis client with error: ${error}`)
       );
 
-      redisClient.on("ready", () => console.log("Redis is ready!"));
+      redisClient.on("ready", () => logger.info("Redis is ready!"));
 
       try {
         await redisClient.connect();
         await redisClient.ping();
       } catch (error) {
-        console.error(`Connection to Redis failed with error: ${error}`);
+        logger.error(`Connection to Redis failed with error: ${error}`);
       }
     }
   };
@@ -47,7 +48,7 @@ const redisCacheUtils = ((
         }
         await redisClient.set(key, data, redisOptions);
       } catch (error) {
-        console.error(`Failed to cache data for key=${key}`, e);
+        logger.error(`Failed to cache data for key=${key}`, e);
       }
     }
   };
