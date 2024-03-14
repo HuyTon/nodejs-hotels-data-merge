@@ -8,6 +8,9 @@ describe("Hotel Controller", () => {
     sinon.restore(); // Restore stubs after each test
   });
 
+  // A spy in Sinon is a function that records information about its calls, such as arguments, return values, the value of this,
+  // and exceptions thrown (if any). This allows us to track how the function is used during tests and make assertions based on that usage.
+  // After using the spy, we can make assertions to verify how it was called. Sinon provides various assertion methods like called, calledOnce, calledWith.
   describe("getHotels", () => {
     it("should return all hotels if no destination or hotels query parameters are provided", async () => {
       // Stub HotelService.getAllHotels to return mock data
@@ -45,6 +48,10 @@ describe("Hotel Controller", () => {
       await hotelController.getHotels(req, res);
 
       // Assert the response
+      // - res.json.calledOnce: This part suggests that we're using a spy (res.json) created
+      //   with Sinon to track how many times the json method of the res object has been called.
+      // - .to.be.true: This part asserts that the condition res.json.calledOnce should evaluate to true.
+      //   In other words, it checks if the json method of the res object has been called exactly once during the test.
       expect(res.json.calledOnce).to.be.true;
       expect(res.json.firstCall.args[0]).to.deep.equal([
         { id: "SjyX", name: "Hotel 2", destination_id: 2 },

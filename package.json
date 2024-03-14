@@ -7,7 +7,8 @@
         "start": "node index",
         "dev": "nodemon index",
         "test": "mocha test/**/*.js test/**/**/*.js --reporter spec",
-        "benchmark": "artillery run artillery.yml"
+        "benchmark": "artillery run artillery.yml",
+        "migratedb": "knex migrate:latest"
     },
     "keywords": [],
     "author": "Huy Ton That",

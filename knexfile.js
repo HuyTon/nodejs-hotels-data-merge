@@ -7,8 +7,5 @@ module.exports = {
       password: "123456789",
       database: "hotels",
     },
-    migrations: {
-      tableName: "api_keys",
-    },
   },
 };
