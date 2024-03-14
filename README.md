@@ -296,3 +296,125 @@ deploy:
 2. Follow the setup instructions provided in the README to configure the CI/CD workflow and self-hosted deployment with PM2.
 3. Make changes to your code and push them to trigger the CI/CD pipelines and deployment process.
 4. Sit back and watch as GitHub Actions and PM2 handle the rest, automating your development workflow seamlessly.
+
+### Advanced Features
+
+This project utilizes Redis caching with a Least Recently Used (LRU) model. Redis serves as a high-performance, in-memory data store, optimizing data retrieval and storage by prioritizing frequently accessed data while gracefully managing memory usage. Leveraging the LRU model, Redis efficiently maintains data integrity by evicting the least recently accessed items when memory limits are reached, ensuring optimal performance and resource utilization.
+
+#### Installation
+
+```
+brew install redis
+```
+
+#### Check Redis Installation:
+
+```
+redis-server --version
+```
+
+#### Start Redis server
+
+```
+redis-server
+```
+
+#### Stop Redis server
+
+- ##### Connect to the running Redis server
+
+  ```
+  redis-cli
+  ```
+
+- ##### Once connected, issue the SHUTDOWN command to stop the Redis server
+
+  ```
+  SHUTDOWN
+  ```
+
+#### Retrieve Redis data
+
+- ##### Connect to the running Redis server:
+
+  ```
+  redis-cli
+  ```
+
+- ##### Retrieve all current keys
+
+  ```
+  KEYS *
+  ```
+
+- ##### View cached data by key
+
+  ```
+  GET <key>
+  ```
+
+#### Exit the Redis Server client
+
+```
+exit
+```
+
+### Benchmarking with Artillery
+
+We will utilize the Artillery (https://github.com/artilleryio/artillery) package to measure our application's performance in its current state so that we can easily quantify the differences after adding caching through Redis.
+
+- #### Installation
+
+  ```
+  npm install -g artillery
+  ```
+
+- #### Check the installation
+
+  ```
+  artillery --version
+  ```
+
+- #### Execute benchmark
+
+  ```
+  npm run benchmark
+  ```
+
+- #### Analyze the benchmark result
+
+  Summary report @ 14:47:54(+0800)
+
+  ```
+  http.codes.200: ................................................................ 600
+  http.downloaded_bytes: ......................................................... 4944000
+  http.request_rate: ............................................................. 10/sec
+  http.requests: ................................................................. 600
+  http.response_time:
+  min: ......................................................................... 1
+  max: ......................................................................... 79
+  mean: ........................................................................ 2.8
+  median: ...................................................................... 2
+  p95: ......................................................................... 4
+  p99: ......................................................................... 15
+  http.responses: ................................................................ 600
+  vusers.completed: .............................................................. 600
+  vusers.created: ................................................................ 600
+  vusers.created_by_name.Query all hotels: ....................................... 600
+  vusers.failed: ................................................................. 0
+  vusers.session_length:
+  min: ......................................................................... 4
+  max: ......................................................................... 128
+  mean: ........................................................................ 6.9
+  median: ...................................................................... 5
+  p95: ......................................................................... 11.6
+  p99: ......................................................................... 71.5
+  ```
+
+  The exact numbers will likely differ in your test run, but the following is the explanation of the report above:
+
+  - 10 requests were made to the server every second, and 600 requests in total.
+  - All 600 requests were successful (200 OK).
+  - The minimum and maximum response times was 1ms and 79ms respectively.
+  - The average response time was 2ms.
+  - The 95th and 99th percentile numbers are 4ms and 15ms respectively. This means, 95% of the time, the request was fulfilled below 4ms and 99% of the time, it was below 15ms.
